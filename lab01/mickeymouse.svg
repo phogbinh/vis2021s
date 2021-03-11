@@ -45,6 +45,36 @@
 
   <path d="M256 256 V270 V242 M256 256 H270 H242" stroke="black" fill="white"></path>
   <text x="254" y="250" font-size="16" text-anchor="middle" fill="red">(256, 256)</text>
-</svg>
 
+  <path
+  d = "M 410 320
+       A 128 128, 0, 0, 0, 390 220
+       A 95  92,  0, 0, 0, 480 64
+       A 95  92,  0, 0, 0, 340 180
+       A 128 100, 0, 0, 0, 176 170
+       A 94  86,  0, 0, 0, 30 70
+       A 95  95,  0, 0, 0, 128 225
+       A 150 150, 0, 0, 0, 256 465
+       A 160 180, 0, 0, 0, 410 320
+       "
+  stroke-width = "10"
+  stroke       = "#F00"
+  fill         = "none"
+  opacity      = "0.3"/>
+
+  <text x="410" y="340" font-size="16" text-anchor="middle" fill="red">(410, 320)</text>
+  <circle id="c1" cx="410" cy="320" r="1" stroke="red" fill="none">
+    <animate attributeName="r" to="10" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="100" y="340" font-size="16" text-anchor="middle" fill="red">(100, 320)</text>
+  <circle id="c2" cx="100" cy="320" r="1" stroke="red" fill="none">
+    <animate attributeName="r" to="10" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="0" cy="0" r="1" stroke="blue" fill="none">
+    <animateMotion dur="6s" path="M410 320 A128 128, 0, 1, 0, 100 320z" repeatCount="indefinite" rotate="auto"/>
+    <animate attributeName="r" to="15" dur="6s" repeatCount="indefinite"/>
+  </circle>
+</svg>
     
