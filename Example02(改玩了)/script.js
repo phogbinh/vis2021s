@@ -109,7 +109,7 @@ function getD3Json(jobData, allBoss, mapping) {
     return d3Json;
 }
 
-function getSalaryScoreMap(jobData, mappingRange) {
+function getSalaryScoreMap(jobData, salaryScoreMapInterval) {
     var flatten = []
 
     var correspondingMapping = {}
@@ -131,7 +131,7 @@ function getSalaryScoreMap(jobData, mappingRange) {
         //假設原本的區間為Omin~Omax，對應的區間為Nmin~Nmax
         //公式為Nmapping = [(Nmax-Nmin) / (Omax-Omin) * (O-Omin)] + Nmin
     for (var k in correspondingMapping) {
-        correspondingMapping[k] = ((mappingRange[1] - mappingRange[0]) / (flatten[flatten.length - 1] - flatten[0])) * (parseFloat(k) - flatten[0]) + mappingRange[0]
+        correspondingMapping[k] = ((salaryScoreMapInterval[1] - salaryScoreMapInterval[0]) / (flatten[flatten.length - 1] - flatten[0])) * (parseFloat(k) - flatten[0]) + salaryScoreMapInterval[0]
     }
 
     return correspondingMapping
