@@ -25,9 +25,9 @@ function processJobData(fileText, treemapContainer) {
     d3.csv(csvUri, function(rows) {
         var jobData = rows.map(function(row) { // process salary data
             var salaryText = row['待遇'].replace(/,/g, ''); // remove all commas
-            var firstDigitMatch = /[0-9]/.exec(salaryText);
+            var firstDigitRegexMatch = /[0-9]/.exec(salaryText);
             var salary = 0;
-            for (var i = firstDigitMatch['index']; i < salaryText.length; ++i) {
+            for (var i = firstDigitRegexMatch['index']; i < salaryText.length; ++i) {
                 if (!(('0' <= salaryText[i] && salaryText[i] <= '9'))) { // break on non-digit
                     break;
                 }
