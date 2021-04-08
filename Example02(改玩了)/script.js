@@ -12,13 +12,13 @@ window.addEventListener('load', function() {
             }
             var csvFile = files[0];
             //讀取csv
-            var fr = new FileReader();
-            fr.onload = function() {
-                dataLoader(fr.result, function(allBoss, d3Json) {
+            var fileReader = new FileReader();
+            fileReader.onload = function() {
+                dataLoader(fileReader.result, function(allBoss, d3Json) {
                     treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
                 })
             };
-            fr.readAsText(csvFile);
+            fileReader.readAsText(csvFile);
         }
     });
 });
