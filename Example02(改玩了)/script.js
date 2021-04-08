@@ -86,7 +86,7 @@ function getEmployers(jobData) {
     return employers;
 }
 
-function getD3Json(jobData, employers, mapping) {
+function getD3Json(jobData, employers, salaryScoreMap) {
     var d3Json = {
         children: [],
         name: 'vis2021s'
@@ -103,7 +103,7 @@ function getD3Json(jobData, employers, mapping) {
         d3Json.children.find(element => element.name === bossName).children.push({
             jobName: row['職稱'],
             salary: salary,
-            value: mapping[salary]
+            value: salaryScoreMap[salary]
         });
     });
     return d3Json;
