@@ -22,7 +22,7 @@ window.addEventListener('load', function() {
 
 function processJobData(fileText, treemapContainer) {
     var csvUri = 'data:text/plain;base64,' + getEncodeBase64(fileText);
-    d3.csv(csvUri, function(rows) { // update global variable `csvData`
+    d3.csv(csvUri, function(rows) {
         var jobData = rows.map(function(row) { // process salary data
             var salaryText = row['待遇'].replace(/,/g, ''); // remove all commas
             var firstDigitMatch = /[0-9]/.exec(salaryText);
