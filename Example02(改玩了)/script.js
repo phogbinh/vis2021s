@@ -5,7 +5,7 @@ window.addEventListener('load', function() {
     });
     document.getElementById('dropfile').addEventListener('drop', function(event) {
         event.preventDefault();
-        var files = event.dataTransfer.files;
+        const files = event.dataTransfer.files;
         if (files.length) {
             if (treemapContainer.innerHTML.length) {
                 treemapContainer.innerHTML = '';
