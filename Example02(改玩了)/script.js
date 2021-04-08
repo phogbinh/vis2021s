@@ -50,7 +50,8 @@ function get_base64_encode(text) {
     var t, e, o, a, h, c;
     var result = '';
     var d = 0;
-    for (text = get_utf8_encode(text); d < text.length;) {
+    text = get_utf8_encode(text);
+    for (; d < text.length;) {
         o = (c = text.charCodeAt(d++)) >> 2;
         a = (3 & c) << 4 | (t = text.charCodeAt(d++)) >> 4;
         h = (15 & t) << 2 | (e = text.charCodeAt(d++)) >> 6;
