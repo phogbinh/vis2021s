@@ -20,8 +20,8 @@ window.addEventListener('load', function() {
     });
 });
 
-function loadData(csvText, treemapContainer) {
-    var csvUri = 'data:text/plain;base64,' + Base64.encode(csvText);
+function loadData(fileText, treemapContainer) {
+    var csvUri = 'data:text/plain;base64,' + Base64.encode(fileText);
     d3.csv(csvUri, function(rows) { // update global variable `csvData`
         var jobData = rows.map(function(row) { // process salary data
             var salaryText = row['待遇'].replace(/,/g, ''); // remove all commas
