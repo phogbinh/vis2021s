@@ -62,29 +62,29 @@ function getD3Json(allBoss, mapping) {
 }
 
 function getMapping(mappingRange) {
-         var flatten = []
- 
-         var correspondingMapping = {}
- 
-         //將所有數值取出置入faltten中
-         for(var i = 0; i<csvData.length; i++){
-             for(var j in csvData[i]){
-                 if(typeof csvData[i][j] == "number"){
-                     correspondingMapping[csvData[i][j]] = null
-                     flatten.push(csvData[i][j])
-                 }
-             }
-         }
- 
-         flatten = flatten.sort(function(a,b){
-             return a - b
-         })
-         //數值映射公式
-         //假設原本的區間為Omin~Omax，對應的區間為Nmin~Nmax
-         //公式為Nmapping = [(Nmax-Nmin) / (Omax-Omin) * (O-Omin)] + Nmin
-         for(var k in correspondingMapping){
-             correspondingMapping[k] = ((mappingRange[1] - mappingRange[0]) / (flatten[flatten.length - 1] - flatten[0])) * (parseFloat(k) - flatten[0]) + mappingRange[0]
-         }
- 
-         return correspondingMapping
+    var flatten = []
+
+    var correspondingMapping = {}
+
+    //將所有數值取出置入faltten中
+    for (var i = 0; i < csvData.length; i++) {
+        for (var j in csvData[i]) {
+            if (typeof csvData[i][j] == "number") {
+                correspondingMapping[csvData[i][j]] = null
+                flatten.push(csvData[i][j])
+            }
+        }
+    }
+
+    flatten = flatten.sort(function(a, b) {
+            return a - b
+        })
+        //數值映射公式
+        //假設原本的區間為Omin~Omax，對應的區間為Nmin~Nmax
+        //公式為Nmapping = [(Nmax-Nmin) / (Omax-Omin) * (O-Omin)] + Nmin
+    for (var k in correspondingMapping) {
+        correspondingMapping[k] = ((mappingRange[1] - mappingRange[0]) / (flatten[flatten.length - 1] - flatten[0])) * (parseFloat(k) - flatten[0]) + mappingRange[0]
+    }
+
+    return correspondingMapping
 }
