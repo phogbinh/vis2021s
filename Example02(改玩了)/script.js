@@ -13,16 +13,14 @@ window.addEventListener('load', function() {
             //讀取csv
             var fileReader = new FileReader();
             fileReader.onload = function() {
-                dataLoader(fileReader.result, function(allBoss, d3Json) {
-                    treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
-                })
+                dataLoader(fileReader.result, treemapContainer);
             };
             fileReader.readAsText(files[0]);
         }
     });
 });
 
-function dataLoader(csvText, callbackFunc) {
+function dataLoader(csvText, treemapContainer) {
     var csvUri = 'data:text/plain;base64,' + Base64.encode(csvText);
     d3.csv(csvUri, function(rows) { // update global variable `csvData`
         var jobData = rows.map(function(row) { // process salary data
@@ -43,7 +41,7 @@ function dataLoader(csvText, callbackFunc) {
         });
         var allBoss = getAllBoss(jobData);
         var d3Json = getD3Json(jobData, allBoss, getMapping(jobData, [0, 100]));
-        callbackFunc(allBoss, d3Json);
+        treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
     });
 }
 
