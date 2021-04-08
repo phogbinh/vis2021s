@@ -78,9 +78,9 @@ function getEncodeUtf8(text) {
 function getEmployers(jobData) {
     var employers = [];
     jobData.forEach(function(row) {
-        const bossName = row['廠商'];
-        if (employers.indexOf(bossName) === -1) {
-            employers.push(bossName);
+        const employer = row['廠商'];
+        if (employers.indexOf(employer) === -1) {
+            employers.push(employer);
         }
     });
     return employers;
