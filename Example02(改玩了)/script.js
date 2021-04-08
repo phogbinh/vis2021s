@@ -1,31 +1,23 @@
 window.addEventListener('load', function() {
     var treemapContainer = document.getElementById('treemap');
-
     document.getElementById('dropfile').addEventListener('dragover', function(evt) {
         evt.preventDefault();
     });
-
     document.getElementById('dropfile').addEventListener('drop', function(evt) {
         evt.preventDefault();
-
         var files = evt.dataTransfer.files;
-
         if (files.length) {
             if (treemapContainer.innerHTML.length) {
                 treemapContainer.innerHTML = '';
             }
-
             var csvFile = files[0];
-
             //讀取csv
             var fr = new FileReader();
-
             fr.onload = function() {
                 dataLoader(fr.result, function(allBoss, d3Json) {
                     treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
                 })
             };
-
             fr.readAsText(csvFile);
         }
     });
