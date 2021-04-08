@@ -21,7 +21,7 @@ window.addEventListener('load', function() {
             fr.readAsText(csvFile);
         }
     });
-})
+});
 
 function dataLoader(csvText, callbackFunc) {
     var csvUri = 'data:text/plain;base64,' + Base64.encode(csvText);
