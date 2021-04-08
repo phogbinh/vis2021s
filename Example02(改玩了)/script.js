@@ -127,7 +127,7 @@ function getSalaryScoreMap(jobData, salaryScoreMapInterval) {
 
 //產生SVG
 function mkSVG(treemapContainer, employers, d3Json) {
-    const treemap = document.createElement('div')
+    const treemap = document.createElement('div');
 
     const margin = {
         top: 10,
@@ -142,12 +142,12 @@ function mkSVG(treemapContainer, employers, d3Json) {
         .append('svg')
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
-        .append('g')
+        .append('g');
 
     //利用d3.hierarchy產生x y的資料
     const d3ds = d3.hierarchy(d3Json).sum(({
         value
-    }) => value)
+    }) => value);
 
 
     //設定svg位置
@@ -156,18 +156,18 @@ function mkSVG(treemapContainer, employers, d3Json) {
         .paddingTop(45)
         .paddingRight(15)
         .paddingInner(10)
-        (d3ds)
+        (d3ds);
 
 
     //設定指導教授顏色
     const color = d3.scaleOrdinal()
         .domain(employers)
-        .range(["#402D54", "#D18975", "#8FD175", "#ff66ff", "#ffb366", "#80ff80", "#d279a6", "#ff6633", "#6600ff", "#00bfff", "#53c653", "#ff8000"])
+        .range(["#402D54", "#D18975", "#8FD175", "#ff66ff", "#ffb366", "#80ff80", "#d279a6", "#ff6633", "#6600ff", "#00bfff", "#53c653", "#ff8000"]);
 
     //設定透明度，分數越低越透明
     const opacity = d3.scaleLinear()
         .domain([100, 0])
-        .range([1, .1])
+        .range([1, .1]);
 
     //化長方形
     svg
@@ -193,7 +193,7 @@ function mkSVG(treemapContainer, employers, d3Json) {
         .style('fill', ({
             parent
         }) => color(parent.data.name))
-        .style('opacity', (d) => opacity(d.data.value))
+        .style('opacity', (d) => opacity(d.data.value));
 
 
     //寫學生姓名
@@ -212,7 +212,7 @@ function mkSVG(treemapContainer, employers, d3Json) {
             data
         }) => '職稱：' + data.jobName)
         .attr('font-size', '1rem')
-        .attr('fill', 'white')
+        .attr('fill', 'white');
 
     //寫學生分數
     svg
@@ -230,7 +230,7 @@ function mkSVG(treemapContainer, employers, d3Json) {
             data
         }) => '分數：' + data.value.toFixed(2))
         .attr('font-size', '.9rem')
-        .attr('fill', 'white')
+        .attr('fill', 'white');
 
     svg
         .selectAll('studentSecond')
@@ -247,7 +247,7 @@ function mkSVG(treemapContainer, employers, d3Json) {
             data
         }) => '月新：' + data.salary + '元')
         .attr('font-size', '.9rem')
-        .attr('fill', 'white')
+        .attr('fill', 'white');
 
     svg
         .selectAll('labertory')
@@ -266,7 +266,7 @@ function mkSVG(treemapContainer, employers, d3Json) {
             data
         }) => data.name)
         .attr('font-size', '1.1rem')
-        .attr('fill', 'black')
+        .attr('fill', 'black');
 
-    return treemap
+    return treemap;
 }
