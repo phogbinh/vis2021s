@@ -118,12 +118,12 @@ function getSalaryScoreMap(jobData, salaryScoreMapInterval) {
     //數值映射公式
     //假設原本的區間為Omin~Omax，對應的區間為Nmin~Nmax
     //公式為Nmapping = [(Nmax-Nmin) / (Omax-Omin) * (O-Omin)] + Nmin
-    var correspondingMapping = {};
+    var map = {};
     for (var i = 0; i < salaries.length; ++i) {
         var salary = salaries[i];
-        correspondingMapping[salary] = ((salaryScoreMapInterval[1] - salaryScoreMapInterval[0]) / (salaries[salaries.length - 1] - salaries[0])) * (parseFloat(salary) - salaries[0]) + salaryScoreMapInterval[0];
+        map[salary] = ((salaryScoreMapInterval[1] - salaryScoreMapInterval[0]) / (salaries[salaries.length - 1] - salaries[0])) * (parseFloat(salary) - salaries[0]) + salaryScoreMapInterval[0];
     }
-    return correspondingMapping;
+    return map;
 }
 
 //產生SVG
