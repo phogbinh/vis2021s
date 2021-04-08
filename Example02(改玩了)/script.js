@@ -98,9 +98,8 @@ function getD3Json(jobData, employers, salaryScoreMap) {
         });
     }
     jobData.forEach(function(row) {
-        const bossName = row['廠商'];
         const salary = row['待遇'];
-        d3Json.children.find(element => element.name === bossName).children.push({
+        d3Json.children.find(element => element.name === row['廠商']).children.push({
             jobName: row['職稱'],
             salary: salary,
             value: salaryScoreMap[salary]
