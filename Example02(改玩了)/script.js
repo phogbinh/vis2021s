@@ -126,7 +126,7 @@ function getSalaryScoreMap(jobData, salaryScoreMapInterval) {
 }
 
 //產生SVG
-function mkSVG(container, bosses, data) {
+function mkSVG(treemapContainer, bosses, data) {
     const treemap = document.createElement('div')
 
     const margin = {
@@ -135,8 +135,8 @@ function mkSVG(container, bosses, data) {
         bottom: 10,
         left: 10
     };
-    const height = container.clientHeight - margin.top - margin.bottom;
-    const width = container.clientWidth - margin.left - margin.right;
+    const height = treemapContainer.clientHeight - margin.top - margin.bottom;
+    const width = treemapContainer.clientWidth - margin.left - margin.right;
 
     const svg = d3.select(treemap)
         .append('svg')
