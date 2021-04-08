@@ -1,5 +1,5 @@
-const MIN_SCORE = 10;
-const MAX_SCORE = 100;
+const MIN_JOB_SCORE = 10;
+const MAX_JOB_SCORE = 100;
 
 window.addEventListener('load', function() {
     var treemapContainer = document.getElementById('treemap');
@@ -43,7 +43,7 @@ function processJobData(fileText, treemapContainer) {
             return row; // update row
         });
         const allBoss = getAllBoss(jobData);
-        const d3Json = getD3Json(jobData, allBoss, getMapping(jobData, [MIN_SCORE, MAX_SCORE]));
+        const d3Json = getD3Json(jobData, allBoss, getMapping(jobData, [MIN_JOB_SCORE, MAX_JOB_SCORE]));
         treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
     });
 }
