@@ -98,6 +98,110 @@
 		</script>
 
 		<script>
+			//產生SVG
+			function mkSVG(container, bosses, data){
+				const treemap = document.createElement('div')
+				
+				const margin = {top: 10, right: 10, bottom: 10, left: 10};
+				const height = container.clientHeight - margin.top - margin.bottom;
+				const width = container.clientWidth - margin.left - margin.right;
+				
+				const svg = d3.select(treemap)
+							  .append('svg')
+							  .attr('width', width + margin.left + margin.right)
+							  .attr('height', height + margin.top + margin.bottom)
+							  .append('g')
+							
+				//利用d3.hierarchy產生x y的資料
+				const d3ds = d3.hierarchy(data).sum(({value}) => value)
+				
+				
+				//設定svg位置
+				d3.treemap()
+				  .size([width, height])
+				  .paddingTop(45)
+				  .paddingRight(15)
+				  .paddingInner(10) 
+				  (d3ds)
+				  
+				  
+				//設定指導教授顏色
+				const color = d3.scaleOrdinal()
+								.domain(bosses)
+								.range([ "#402D54", "#D18975", "#8FD175", "#ff66ff", "#ffb366", "#80ff80", "#d279a6", "#ff6633", "#6600ff", "#00bfff", "#53c653", "#ff8000"])
+								
+				//設定透明度，分數越低越透明
+				const opacity = d3.scaleLinear()
+								.domain([100, 0])
+								.range([1,.1])
+								
+				//化長方形
+				svg
+					.selectAll('rectangle')
+					.data(d3ds.leaves())
+					.enter()
+					.append('rect')
+					 .attr('x', ({x0}) => x0)
+					 .attr('y', ({y0}) => y0)
+					 .attr('width', ({x0,x1}) => x1-x0)
+					 .attr('height', ({y0,y1}) => y1-y0)
+					 .style('stroke', 'red')
+					 .style('fill', ({parent}) => color(parent.data.name))
+					 .style('opacity', (d) => opacity(d.data.value))
+					 
+				
+				//寫學生姓名
+				svg
+					.selectAll('studentNames')
+					.data(d3ds.leaves())
+					.enter()
+					.append('text')
+					 .attr('x', ({x0}) => x0 + 1)
+					 .attr('y', ({y0}) => y0 + 20)
+					 .text(({data}) => '職稱：' + data.jobName)
+					 .attr('font-size', '1rem')
+					 .attr('fill', 'white')
+				
+				//寫學生分數
+				svg
+					.selectAll('studentScore')
+					.data(d3ds.leaves())
+					.enter()
+					.append('text')
+					 .attr('x', ({x0}) => x0 + 1)
+					 .attr('y', ({y0}) => y0 + 35)
+					 .text(({data}) => data.value.toFixed(2))
+					 .attr('font-size', '.9rem')
+					 .attr('fill', 'white')
+					 
+				svg
+					.selectAll('studentSecond')
+					.data(d3ds.leaves())
+					.enter()
+					.append('text')
+					 .attr('x', ({x0}) => x0 + 1)
+					 .attr('y', ({y0}) => y0 + 50)
+					 .text(({data}) => '月新：' + data.salary + '元')
+					 .attr('font-size', '.9rem')
+					 .attr('fill', 'white')
+					 
+				svg
+					.selectAll('labertory')
+					.data(d3ds.descendants().filter(function(d){return d.depth==1}))
+					.enter()
+					.append('text')
+					 .attr('x', ({x0}) => x0 + 1)
+					 .attr('y', ({y0}) => y0 + 21)
+					 .text(({data}) => data.name)
+					 .attr('font-size', '1.1rem')
+					 .attr('fill', 'black')
+					 
+				return treemap
+			}	
+		</script>
+
+
+		<script>
 			var csvData = null
 			window.addEventListener('load', function(){
                 var treemapContainer = document.getElementById('treemap')
@@ -145,9 +249,8 @@
 
                         fr.onload = function(){
                             dataLoader(fr.result, function(){
-								dataClassifier(objectKeys.value, function(data, layers){
-									node = getNode(data, layers, treemapContainer)
-									treemapContainer.innerHTML = node.innerHTML
+								dataClassifier(objectKeys.value, function(allBoss, d3Json){
+                                    treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
 								}) 
 							})			                         
                         }

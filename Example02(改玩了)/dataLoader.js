@@ -1,5 +1,3 @@
-var title = "treemap";
-
 function dataLoader(csvText, callbackFunc) {
     var csvUri = 'data:text/plain;base64,' + Base64.encode(csvText);
     d3.csv(csvUri, function(rows) { // update global variable `csvData`
@@ -24,73 +22,69 @@ function dataLoader(csvText, callbackFunc) {
 }
 
 function dataClassifier(key, callback) {
-	
-	var makeMapping = function(mappingRange){
-		var flatten = []
-		
-		var correspondingMapping = {}
-		
-		//將所有數值取出置入faltten中
-		for(var i = 0; i<csvData.length; i++){
-			for(var j in csvData[i]){
-				if(typeof csvData[i][j] == "number"){
-					correspondingMapping[csvData[i][j]] = null
-					flatten.push(csvData[i][j])
-				}
-			}
-		}
-		
-		flatten = flatten.sort(function(a,b){
-			return a - b
-		})
-		//數值映射公式
-		//假設原本的區間為Omin~Omax，對應的區間為Nmin~Nmax
-		//公式為Nmapping = [(Nmax-Nmin) / (Omax-Omin) * (O-Omin)] + Nmin
-		for(var k in correspondingMapping){
-			correspondingMapping[k] = ((mappingRange[1] - mappingRange[0]) / (flatten[flatten.length - 1] - flatten[0])) * (parseFloat(k) - flatten[0]) + mappingRange[0]	
-		}
-		
-		return correspondingMapping
-	}
-	
-	//將原有數值對應到較小的區間
-	var mapping = makeMapping([20, 100])
+    var allBoss = getAllBoss();
+    var d3Json = getD3Json(allBoss, getMapping([0, 100]));
+    callback(allBoss, d3Json);
+}
 
-    var d3json = {
+function getAllBoss() {
+    var allBoss = [];
+    csvData.forEach(function(row) {
+        const bossName = row['廠商'];
+        if (allBoss.indexOf(bossName) === -1) {
+            allBoss.push(bossName);
+        }
+    });
+    return allBoss;
+}
+
+function getD3Json(allBoss, mapping) {
+    var d3Json = {
         children: [],
-        name: title
+        name: 'vis2021s'
+    };
+    for (var i = 0; i < allBoss.length; ++i) {
+        d3Json.children.push({
+            name: allBoss[i],
+            children: []
+        });
     }
+    csvData.forEach(function(row) {
+        const bossName = row['廠商'];
+        const salary = row['待遇'];
+        d3Json.children.find(element => element.name === bossName).children.push({
+            jobName: row['職稱'],
+            salary: salary,
+            value: mapping[salary]
+        });
+    });
+    return d3Json;
+}
 
-	var layer = []
-	//循環讀取所有的data
-    csvData.forEach(function(d){
-		//這邊讀取所有非分層的名稱，只要該名稱不是分層名字就加入子節點中
-		//比如你想用 類別 作為分層名稱，那就把除了類別的名稱加入子節點	
-		var list = []
-		for(var k in d){
-			if(k != key){
-				list.push(k)
-			}
-		}
-		
-		//這邊將所有的分層名稱加入至layer陣列中
-        layer.push(d[key])
-
-        //以單位名稱作為分曾
-        d3json.children.push({
-            name: d[key],
-            children: list.map(function(k){
-                //代表每一個長方形的大小
-				//如果直接以節點本身的數值計算長方形大小，可能會因為不同節點的數值差異過大
-				//而導致有些長方形面積很大，有些很小，會有很多長方形湖在一起
-                return {
-                    name: k,
-                    size: mapping[d[k]],
-                    value: d[k]
-                }
-            })
-        })
-    })
-
-    callback(d3json, layer)
+function getMapping(mappingRange) {
+         var flatten = []
+ 
+         var correspondingMapping = {}
+ 
+         //將所有數值取出置入faltten中
+         for(var i = 0; i<csvData.length; i++){
+             for(var j in csvData[i]){
+                 if(typeof csvData[i][j] == "number"){
+                     correspondingMapping[csvData[i][j]] = null
+                     flatten.push(csvData[i][j])
+                 }
+             }
+         }
+ 
+         flatten = flatten.sort(function(a,b){
+             return a - b
+         })
+         //數值映射公式
+         //假設原本的區間為Omin~Omax，對應的區間為Nmin~Nmax
+         //公式為Nmapping = [(Nmax-Nmin) / (Omax-Omin) * (O-Omin)] + Nmin
+         for(var k in correspondingMapping){
+             correspondingMapping[k] = ((mappingRange[1] - mappingRange[0]) / (flatten[flatten.length - 1] - flatten[0])) * (parseFloat(k) - flatten[0]) + mappingRange[0]
+         }
+ 
+         return correspondingMapping
 }
