@@ -44,7 +44,7 @@ function processJobData(fileText, treemapContainer) {
         });
         const employers = getEmployers(jobData);
         const d3Json = getD3Json(jobData, employers, getSalaryScoreMap(jobData, [MIN_SALARY_SCORE, MAX_SALARY_SCORE]));
-        treemapContainer.appendChild(mkSVG(treemapContainer, employers, d3Json));
+        treemapContainer.appendChild(generateSvg(treemapContainer, employers, d3Json));
     });
 }
 
@@ -125,8 +125,7 @@ function getSalaryScoreMap(jobData, salaryScoreMapInterval) {
     return map;
 }
 
-//產生SVG
-function mkSVG(treemapContainer, employers, d3Json) {
+function generateSvg(treemapContainer, employers, d3Json) {
     const treemap = document.createElement('div');
 
     const margin = {
