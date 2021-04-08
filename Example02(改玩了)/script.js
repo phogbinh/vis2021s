@@ -102,7 +102,7 @@ function getD3Json(jobData, employers, salaryScoreMap) {
         d3Json.children.find(element => element.name === row['廠商']).children.push({
             jobName: row['職稱'],
             salary: salary,
-            value: salaryScoreMap[salary]
+            value: salaryScoreMap[salary] // must be `value` for d3 treemap
         });
     });
     return d3Json;
