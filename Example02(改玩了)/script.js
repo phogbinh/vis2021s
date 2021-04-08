@@ -86,14 +86,14 @@ function getEmployers(jobData) {
     return employers;
 }
 
-function getD3Json(jobData, allBoss, mapping) {
+function getD3Json(jobData, employers, mapping) {
     var d3Json = {
         children: [],
         name: 'vis2021s'
     };
-    for (var i = 0; i < allBoss.length; ++i) {
+    for (var i = 0; i < employers.length; ++i) {
         d3Json.children.push({
-            name: allBoss[i],
+            name: employers[i],
             children: []
         });
     }
