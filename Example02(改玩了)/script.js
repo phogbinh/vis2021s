@@ -10,7 +10,6 @@ window.addEventListener('load', function() {
             if (treemapContainer.innerHTML.length) {
                 treemapContainer.innerHTML = '';
             }
-            var csvFile = files[0];
             //讀取csv
             var fileReader = new FileReader();
             fileReader.onload = function() {
@@ -18,7 +17,7 @@ window.addEventListener('load', function() {
                     treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
                 })
             };
-            fileReader.readAsText(csvFile);
+            fileReader.readAsText(files[0]);
         }
     });
 });
