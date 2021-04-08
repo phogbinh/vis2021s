@@ -149,7 +149,6 @@ function mkSVG(treemapContainer, employers, d3Json) {
         value
     }) => value);
 
-
     //設定svg位置
     d3.treemap()
         .size([width, height])
@@ -157,7 +156,6 @@ function mkSVG(treemapContainer, employers, d3Json) {
         .paddingRight(15)
         .paddingInner(10)
         (d3ds);
-
 
     //設定指導教授顏色
     const color = d3.scaleOrdinal()
@@ -194,7 +192,6 @@ function mkSVG(treemapContainer, employers, d3Json) {
             parent
         }) => color(parent.data.name))
         .style('opacity', (d) => opacity(d.data.value));
-
 
     //寫學生姓名
     svg
