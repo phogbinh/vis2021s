@@ -124,9 +124,7 @@ function getSalaryScoreMap(jobData, salaryScoreMapInterval) {
         }
     }
 
-    flatten = flatten.sort(function(a, b) {
-            return a - b
-        })
+    flatten.sort();
         //數值映射公式
         //假設原本的區間為Omin~Omax，對應的區間為Nmin~Nmax
         //公式為Nmapping = [(Nmax-Nmin) / (Omax-Omin) * (O-Omin)] + Nmin
