@@ -1,11 +1,11 @@
 window.addEventListener('load', function() {
     var treemapContainer = document.getElementById('treemap');
-    document.getElementById('dropfile').addEventListener('dragover', function(evt) {
-        evt.preventDefault();
+    document.getElementById('dropfile').addEventListener('dragover', function(event) {
+        event.preventDefault();
     });
-    document.getElementById('dropfile').addEventListener('drop', function(evt) {
-        evt.preventDefault();
-        var files = evt.dataTransfer.files;
+    document.getElementById('dropfile').addEventListener('drop', function(event) {
+        event.preventDefault();
+        var files = event.dataTransfer.files;
         if (files.length) {
             if (treemapContainer.innerHTML.length) {
                 treemapContainer.innerHTML = '';
