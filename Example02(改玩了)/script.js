@@ -1,5 +1,5 @@
-const MIN_JOB_SCORE = 10;
-const MAX_JOB_SCORE = 100;
+const MIN_SALARY_SCORE = 10;
+const MAX_SALARY_SCORE = 100;
 
 window.addEventListener('load', function() {
     var treemapContainer = document.getElementById('treemap');
@@ -43,7 +43,7 @@ function processJobData(fileText, treemapContainer) {
             return row; // update row
         });
         const employers = getEmployers(jobData);
-        const d3Json = getD3Json(jobData, employers, getSalaryScoreMap(jobData, [MIN_JOB_SCORE, MAX_JOB_SCORE]));
+        const d3Json = getD3Json(jobData, employers, getSalaryScoreMap(jobData, [MIN_SALARY_SCORE, MAX_SALARY_SCORE]));
         treemapContainer.appendChild(mkSVG(treemapContainer, employers, d3Json));
     });
 }
