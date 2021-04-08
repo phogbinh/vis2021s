@@ -1,5 +1,6 @@
 const MIN_SALARY_SCORE = 10;
 const MAX_SALARY_SCORE = 100;
+const EMPLOYERS_COLORS = ["#402d54", "#6600ff", "#8fd175", "#ff66ff", "#00bfff"];
 
 window.addEventListener('load', function() {
     var treemapContainer = document.getElementById('treemap');
@@ -159,7 +160,7 @@ function generateSvg(treemapContainer, employers, d3Json) {
     //設定指導教授顏色
     const color = d3.scaleOrdinal()
         .domain(employers)
-        .range(["#402D54", "#D18975", "#8FD175", "#ff66ff", "#ffb366", "#80ff80", "#d279a6", "#ff6633", "#6600ff", "#00bfff", "#53c653", "#ff8000"]);
+        .range(EMPLOYERS_COLORS);
 
     //設定透明度，分數越低越透明
     const opacity = d3.scaleLinear()
