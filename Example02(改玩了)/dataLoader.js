@@ -17,14 +17,10 @@ function dataLoader(csvText, callbackFunc) {
             row['待遇'] = salary; // update salary data
             return row; // update row
         });
-        callbackFunc();
+        var allBoss = getAllBoss();
+        var d3Json = getD3Json(allBoss, getMapping([0, 100]));
+        callbackFunc(allBoss, d3Json);
     });
-}
-
-function dataClassifier(callback) {
-    var allBoss = getAllBoss();
-    var d3Json = getD3Json(allBoss, getMapping([0, 100]));
-    callback(allBoss, d3Json);
 }
 
 function getAllBoss() {

@@ -297,10 +297,8 @@
                     var fr = new FileReader()
 
                     fr.onload = function() {
-                        dataLoader(fr.result, function() {
-                            dataClassifier(function(allBoss, d3Json) {
-                                treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
-                            })
+                        dataLoader(fr.result, function(allBoss, d3Json) {
+                            treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
                         })
                     }
 
