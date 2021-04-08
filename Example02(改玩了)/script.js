@@ -76,14 +76,14 @@ function getEncodeUtf8(text) {
 }
 
 function getEmployers(jobData) {
-    var allBoss = [];
+    var employers = [];
     jobData.forEach(function(row) {
         const bossName = row['廠商'];
-        if (allBoss.indexOf(bossName) === -1) {
-            allBoss.push(bossName);
+        if (employers.indexOf(bossName) === -1) {
+            employers.push(bossName);
         }
     });
-    return allBoss;
+    return employers;
 }
 
 function getD3Json(jobData, allBoss, mapping) {
