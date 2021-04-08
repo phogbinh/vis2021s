@@ -121,7 +121,7 @@ function getSalaryScoreMap(jobData, salaryScoreMapInterval) {
     var map = {};
     for (var i = 0; i < salaries.length; ++i) {
         var salary = salaries[i];
-        map[salary] = ((salaryScoreMapInterval[1] - salaryScoreMapInterval[0]) / (salaries[salaries.length - 1] - salaries[0])) * (parseFloat(salary) - salaries[0]) + salaryScoreMapInterval[0];
+        map[salary] = ((salaryScoreMapInterval[1] - salaryScoreMapInterval[0]) / (salaries[salaries.length - 1] - salaries[0])) * (salary - salaries[0]) + salaryScoreMapInterval[0];
     }
     return map;
 }
