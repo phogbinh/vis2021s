@@ -240,7 +240,7 @@ function mkSVG(container, bosses, data) {
         }) => y0 + 35)
         .text(({
             data
-        }) => data.value.toFixed(2))
+        }) => '分數：' + data.value.toFixed(2))
         .attr('font-size', '.9rem')
         .attr('fill', 'white')
 
