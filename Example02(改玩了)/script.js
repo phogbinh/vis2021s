@@ -21,11 +21,11 @@ window.addEventListener('load', function() {
 });
 
 function processJobData(fileText, treemapContainer) {
-    var csvUri = 'data:text/plain;base64,' + getEncodeBase64(fileText);
+    const csvUri = 'data:text/plain;base64,' + getEncodeBase64(fileText);
     d3.csv(csvUri, function(rows) {
         var jobData = rows.map(function(row) { // process salary data
             var salaryText = row['待遇'].replace(/,/g, ''); // remove all commas
-            var firstDigitRegexMatch = /[0-9]/.exec(salaryText);
+            const firstDigitRegexMatch = /[0-9]/.exec(salaryText);
             var salary = 0;
             for (var i = firstDigitRegexMatch['index']; i < salaryText.length; ++i) {
                 if (!(('0' <= salaryText[i] && salaryText[i] <= '9'))) { // break on non-digit
@@ -39,8 +39,8 @@ function processJobData(fileText, treemapContainer) {
             row['待遇'] = salary; // update salary data
             return row; // update row
         });
-        var allBoss = getAllBoss(jobData);
-        var d3Json = getD3Json(jobData, allBoss, getMapping(jobData, [0, 100]));
+        const allBoss = getAllBoss(jobData);
+        const d3Json = getD3Json(jobData, allBoss, getMapping(jobData, [0, 100]));
         treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
     });
 }
