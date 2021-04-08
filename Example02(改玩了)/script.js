@@ -1,4 +1,3 @@
-var jobData = null
 window.addEventListener('load', function() {
     var treemapContainer = document.getElementById('treemap')
 
@@ -35,7 +34,7 @@ window.addEventListener('load', function() {
 function dataLoader(csvText, callbackFunc) {
     var csvUri = 'data:text/plain;base64,' + Base64.encode(csvText);
     d3.csv(csvUri, function(rows) { // update global variable `csvData`
-        jobData = rows.map(function(row) { // process salary data
+        var jobData = rows.map(function(row) { // process salary data
             var salaryText = row['待遇'].replace(/,/g, ''); // remove all commas
             var firstDigitMatch = /[0-9]/.exec(salaryText);
             var salary = 0;
@@ -51,8 +50,8 @@ function dataLoader(csvText, callbackFunc) {
             row['待遇'] = salary; // update salary data
             return row; // update row
         });
-        var allBoss = getAllBoss();
-        var d3Json = getD3Json(allBoss, getMapping([0, 100]));
+        var allBoss = getAllBoss(jobData);
+        var d3Json = getD3Json(jobData, allBoss, getMapping(jobData, [0, 100]));
         callbackFunc(allBoss, d3Json);
     });
 }
@@ -85,7 +84,7 @@ var Base64 = {
     }
 };
 
-function getAllBoss() {
+function getAllBoss(jobData) {
     var allBoss = [];
     jobData.forEach(function(row) {
         const bossName = row['廠商'];
@@ -96,7 +95,7 @@ function getAllBoss() {
     return allBoss;
 }
 
-function getD3Json(allBoss, mapping) {
+function getD3Json(jobData, allBoss, mapping) {
     var d3Json = {
         children: [],
         name: 'vis2021s'
@@ -119,7 +118,7 @@ function getD3Json(allBoss, mapping) {
     return d3Json;
 }
 
-function getMapping(mappingRange) {
+function getMapping(jobData, mappingRange) {
     var flatten = []
 
     var correspondingMapping = {}
