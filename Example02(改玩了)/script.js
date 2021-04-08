@@ -43,7 +43,7 @@ function processJobData(fileText, treemapContainer) {
             return row; // update row
         });
         const employers = getEmployers(jobData);
-        const d3Json = getD3Json(jobData, employers, getMapping(jobData, [MIN_JOB_SCORE, MAX_JOB_SCORE]));
+        const d3Json = getD3Json(jobData, employers, getSalaryScoreMap(jobData, [MIN_JOB_SCORE, MAX_JOB_SCORE]));
         treemapContainer.appendChild(mkSVG(treemapContainer, employers, d3Json));
     });
 }
@@ -109,7 +109,7 @@ function getD3Json(jobData, allBoss, mapping) {
     return d3Json;
 }
 
-function getMapping(jobData, mappingRange) {
+function getSalaryScoreMap(jobData, mappingRange) {
     var flatten = []
 
     var correspondingMapping = {}
