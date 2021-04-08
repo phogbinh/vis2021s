@@ -126,7 +126,7 @@ function getSalaryScoreMap(jobData, salaryScoreMapInterval) {
 }
 
 //產生SVG
-function mkSVG(treemapContainer, employers, data) {
+function mkSVG(treemapContainer, employers, d3Json) {
     const treemap = document.createElement('div')
 
     const margin = {
@@ -145,7 +145,7 @@ function mkSVG(treemapContainer, employers, data) {
         .append('g')
 
     //利用d3.hierarchy產生x y的資料
-    const d3ds = d3.hierarchy(data).sum(({
+    const d3ds = d3.hierarchy(d3Json).sum(({
         value
     }) => value)
 
