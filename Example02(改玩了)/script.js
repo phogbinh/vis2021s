@@ -126,7 +126,7 @@ function getSalaryScoreMap(jobData, salaryScoreMapInterval) {
 }
 
 //產生SVG
-function mkSVG(treemapContainer, bosses, data) {
+function mkSVG(treemapContainer, employers, data) {
     const treemap = document.createElement('div')
 
     const margin = {
@@ -161,7 +161,7 @@ function mkSVG(treemapContainer, bosses, data) {
 
     //設定指導教授顏色
     const color = d3.scaleOrdinal()
-        .domain(bosses)
+        .domain(employers)
         .range(["#402D54", "#D18975", "#8FD175", "#ff66ff", "#ffb366", "#80ff80", "#d279a6", "#ff6633", "#6600ff", "#00bfff", "#53c653", "#ff8000"])
 
     //設定透明度，分數越低越透明
