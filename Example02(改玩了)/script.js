@@ -13,14 +13,14 @@ window.addEventListener('load', function() {
             //讀取csv
             var fileReader = new FileReader();
             fileReader.onload = function() {
-                dataLoader(fileReader.result, treemapContainer);
+                loadData(fileReader.result, treemapContainer);
             };
             fileReader.readAsText(files[0]);
         }
     });
 });
 
-function dataLoader(csvText, treemapContainer) {
+function loadData(csvText, treemapContainer) {
     var csvUri = 'data:text/plain;base64,' + Base64.encode(csvText);
     d3.csv(csvUri, function(rows) { // update global variable `csvData`
         var jobData = rows.map(function(row) { // process salary data
