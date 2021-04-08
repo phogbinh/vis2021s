@@ -1,4 +1,4 @@
-var csvData = null
+var jobData = null
 window.addEventListener('load', function() {
     var treemapContainer = document.getElementById('treemap')
 
@@ -35,7 +35,7 @@ window.addEventListener('load', function() {
 function dataLoader(csvText, callbackFunc) {
     var csvUri = 'data:text/plain;base64,' + Base64.encode(csvText);
     d3.csv(csvUri, function(rows) { // update global variable `csvData`
-        csvData = rows.map(function(row) { // process salary data
+        jobData = rows.map(function(row) { // process salary data
             var salaryText = row['待遇'].replace(/,/g, ''); // remove all commas
             var firstDigitMatch = /[0-9]/.exec(salaryText);
             var salary = 0;
@@ -87,7 +87,7 @@ var Base64 = {
 
 function getAllBoss() {
     var allBoss = [];
-    csvData.forEach(function(row) {
+    jobData.forEach(function(row) {
         const bossName = row['廠商'];
         if (allBoss.indexOf(bossName) === -1) {
             allBoss.push(bossName);
@@ -107,7 +107,7 @@ function getD3Json(allBoss, mapping) {
             children: []
         });
     }
-    csvData.forEach(function(row) {
+    jobData.forEach(function(row) {
         const bossName = row['廠商'];
         const salary = row['待遇'];
         d3Json.children.find(element => element.name === bossName).children.push({
@@ -125,11 +125,11 @@ function getMapping(mappingRange) {
     var correspondingMapping = {}
 
     //將所有數值取出置入faltten中
-    for (var i = 0; i < csvData.length; i++) {
-        for (var j in csvData[i]) {
-            if (typeof csvData[i][j] == "number") {
-                correspondingMapping[csvData[i][j]] = null
-                flatten.push(csvData[i][j])
+    for (var i = 0; i < jobData.length; i++) {
+        for (var j in jobData[i]) {
+            if (typeof jobData[i][j] == "number") {
+                correspondingMapping[jobData[i][j]] = null
+                flatten.push(jobData[i][j])
             }
         }
     }
