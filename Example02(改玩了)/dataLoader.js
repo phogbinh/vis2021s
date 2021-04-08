@@ -1,52 +1,26 @@
 var title = "treemap";
 
-
-function dataLoader(text,cb) {
-	//有些csv資料的seperator是使用分號，這邊統一使用逗號座分隔
-    var uri = 'data:text/plain;base64,' + Base64.encode(text.replace(/;/g, ','))
-    var dsv = d3.dsvFormat(",")
-
-    d3.csv(uri, function(rawData){
-        //做資料處理，csv中有些資料是字串，不是數字形式，要轉成數字
-        csvData = rawData.map(function(d){
-            var t = {}
-
-            for (var k in d) {
-                
-                //把字串轉成number
-                if(/[0-9]+/.test(d[k])){
-                    t[k] = parseInt(d[k].replace(/(,|\s)+/g, ''))
+function dataLoader(csvText, callbackFunc) {
+    var csvUri = 'data:text/plain;base64,' + Base64.encode(csvText);
+    d3.csv(csvUri, function(rows) { // update global variable `csvData`
+        csvData = rows.map(function(row) { // process salary data
+            var salaryText = row['待遇'].replace(/,/g, ''); // remove all commas
+            var firstDigitMatch = /[0-9]/.exec(salaryText);
+            var salary = 0;
+            for (var i = firstDigitMatch['index']; i < salaryText.length; ++i) {
+                if (!(('0' <= salaryText[i] && salaryText[i] <= '9'))) { // break on non-digit
+                    break;
                 }
-                //-符號代表為0
-                else if(d[k].replace(/^\s+|\s+$/g, '') == '-'){
-                    t[k] = 0
-                }
-                //在本題中，因為有欄位是空的，空的欄位設置為0
-                else if(d[k].length == 0){
-                    t[k] = 0
-                }
-                //不是數字就不處理
-                else {
-                    t[k] = d[k]
-                }
+                salary = salary * 10 + (salaryText[i] - '0');
             }
-            return t
-        })
-
-        if (!csvData.length){			
-			return
-		}
-            
-		
-		//獲取html中的下拉式選單
-		//只要使用者更改選單欄位，就會用不同的欄位做為分層
-        var objectKeys = document.getElementById("ObjectKeys")
-		for(var k in csvData[0]){
-			objectKeys.add(new Option(k, k))
-		}
-	
-		cb()
-    })
+            if (salary < 1000) { // convert hourly salary to monthly salary
+                salary = salary * 8 * 5 * 4; // 8 hours/day, 5 days/week, 4 weeks/month
+            }
+            row['待遇'] = salary; // update salary data
+            return row; // update row
+        });
+        callbackFunc();
+    });
 }
 
 function dataClassifier(key, callback) {
