@@ -42,7 +42,7 @@ function processJobData(fileText, treemapContainer) {
             row['待遇'] = salary; // update salary data
             return row; // update row
         });
-        const employers = getAllBoss(jobData);
+        const employers = getEmployers(jobData);
         const d3Json = getD3Json(jobData, employers, getMapping(jobData, [MIN_JOB_SCORE, MAX_JOB_SCORE]));
         treemapContainer.appendChild(mkSVG(treemapContainer, employers, d3Json));
     });
@@ -75,7 +75,7 @@ function getEncodeUtf8(text) {
     return result;
 }
 
-function getAllBoss(jobData) {
+function getEmployers(jobData) {
     var allBoss = [];
     jobData.forEach(function(row) {
         const bossName = row['廠商'];
