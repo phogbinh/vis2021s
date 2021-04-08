@@ -90,13 +90,6 @@
     <div id="dropfile" for="csvfile">
         CSV 資料扔過來! Drop your CSV here.
     </div>
-    <div>
-        <select id="ObjectKeys">
-				<option value="selectValue">
-					--select an option--
-				</option>
-			</select>
-    </div>
     <div id="treemap"></div>
 
 
@@ -283,24 +276,6 @@
         var csvData = null
         window.addEventListener('load', function() {
             var treemapContainer = document.getElementById('treemap')
-            var objectKeys = document.getElementById("ObjectKeys")
-
-            document.getElementById("ObjectKeys").addEventListener('change', function(evt) {
-                if (evt.target.value == 'selectValue') {
-                    return;
-                }
-
-                //clear container
-                if (treemapContainer.innerHTML.length) {
-                    treemapContainer.innerHTML = ''
-                }
-
-
-                dataClassifier(objectKeys.value, function(data, layers) {
-                    node = getNode(data, layers, treemapContainer)
-                    treemapContainer.appendChild(node)
-                })
-            })
 
             document.getElementById('dropfile').addEventListener('dragover', function(evt) {
                 evt.preventDefault()
@@ -316,10 +291,6 @@
                         treemapContainer.innerHTML = ''
                     }
 
-                    if (objectKeys.innerHTML.length) {
-                        objectKeys.innerHTML = ''
-                    }
-
                     var csvFile = files[0]
 
                     //讀取csv
@@ -327,7 +298,7 @@
 
                     fr.onload = function() {
                         dataLoader(fr.result, function() {
-                            dataClassifier(objectKeys.value, function(allBoss, d3Json) {
+                            dataClassifier(function(allBoss, d3Json) {
                                 treemapContainer.appendChild(mkSVG(treemapContainer, allBoss, d3Json));
                             })
                         })

@@ -21,7 +21,7 @@ function dataLoader(csvText, callbackFunc) {
     });
 }
 
-function dataClassifier(key, callback) {
+function dataClassifier(callback) {
     var allBoss = getAllBoss();
     var d3Json = getD3Json(allBoss, getMapping([0, 100]));
     callback(allBoss, d3Json);
