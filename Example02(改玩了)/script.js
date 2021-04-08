@@ -21,7 +21,7 @@ window.addEventListener('load', function() {
 });
 
 function loadData(fileText, treemapContainer) {
-    var csvUri = 'data:text/plain;base64,' + get_base64_encode(fileText);
+    var csvUri = 'data:text/plain;base64,' + getEncodeBase64(fileText);
     d3.csv(csvUri, function(rows) { // update global variable `csvData`
         var jobData = rows.map(function(row) { // process salary data
             var salaryText = row['待遇'].replace(/,/g, ''); // remove all commas
@@ -45,12 +45,12 @@ function loadData(fileText, treemapContainer) {
     });
 }
 
-function get_base64_encode(text) {
+function getEncodeBase64(text) {
     const KEY_STRING = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     var t, e, o, a, h, c;
     var result = '';
     var d = 0;
-    text = get_utf8_encode(text);
+    text = getEncodeUtf8(text);
     for (; d < text.length;) {
         o = (c = text.charCodeAt(d++)) >> 2;
         a = (3 & c) << 4 | (t = text.charCodeAt(d++)) >> 4;
@@ -62,7 +62,7 @@ function get_base64_encode(text) {
     return result;
 }
 
-function get_utf8_encode(text) {
+function getEncodeUtf8(text) {
     text = text.replace(/\r\n/g, '\n');
     var result = '';
     for (var i = 0; i < text.length; i++) {
