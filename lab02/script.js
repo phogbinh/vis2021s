@@ -4,29 +4,7 @@ const EMPLOYERS_COLORS = ["#402d54", "#6600ff", "#8fd175", "#ff66ff", "#00bfff"]
 
 window.addEventListener('load', function() {
     var treemapContainer = document.getElementById('treemap');
-    document.getElementById('dropfile').addEventListener('dragover', function(event) {
-        event.preventDefault();
-    });
-    document.getElementById('dropfile').addEventListener('drop', function(event) {
-        event.preventDefault();
-        const files = event.dataTransfer.files;
-        if (files.length) {
-            if (treemapContainer.innerHTML.length) {
-                treemapContainer.innerHTML = '';
-            }
-            //讀取csv
-            var fileReader = new FileReader();
-            fileReader.onload = function() {
-                processJobData(fileReader.result, treemapContainer);
-            };
-            fileReader.readAsText(files[0]);
-        }
-    });
-});
-
-function processJobData(fileText, treemapContainer) {
-    const csvUri = 'data:text/plain;base64,' + getEncodeBase64(fileText);
-    d3.csv(csvUri, function(rows) {
+    d3.csv("data.csv", function(rows) { // 臺北市就業服務處求職求才職缺資訊
         var jobData = rows.map(function(row) { // process salary data
             var salaryText = row['待遇'].replace(/,/g, ''); // remove all commas
             const firstDigitRegexMatch = /[0-9]/.exec(salaryText);
@@ -47,7 +25,7 @@ function processJobData(fileText, treemapContainer) {
         const d3Json = getD3Json(jobData, employers, getSalaryScoreMap(jobData, [MIN_SALARY_SCORE, MAX_SALARY_SCORE]));
         treemapContainer.appendChild(generateSvg(treemapContainer, employers, d3Json));
     });
-}
+});
 
 function getEncodeBase64(text) {
     const KEY_STRING = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
