@@ -4,11 +4,11 @@ d3.text('data.csv').then(function(data) {
       .selectAll('div')
       .data(parsedCSV)
       .enter()
-      .append('div')
       .filter(function(d, i) { return(i != 0); }) // ignore first row
+      .append('div')
       .attr('class', 'bar')
-      //.text(function(d) { return d[1]; })
+      .text(function(d) { return d[1]; })
       .style('height', function(d) {
-          return(d[1] + 'px');
+          return(d[1] * 20 + 'px');
       });
 });
