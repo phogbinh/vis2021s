@@ -1,0 +1,20 @@
+body {
+    border: 1px red solid;
+    padding: 20px;
+}
+
+div.frequency {
+    margin: 0 10px 0 10px;
+    display: inline-block;
+}
+
+div.frequency-value {
+    text-align: center;
+}
+
+div.bar {
+    border: 2px black solid;
+    padding: 0 15px 0 15px;
+    display: inline-block;
+    vertical-align: bottom;
+}
