@@ -1,10 +1,10 @@
 const MIN_SALARY_SCORE = 10;
 const MAX_SALARY_SCORE = 100;
-const EMPLOYERS_COLORS = ["#402d54", "#6600ff", "#8fd175", "#ff66ff", "#00bfff"];
+const EMPLOYERS_COLORS = ['#402d54', '#6600ff', '#8fd175', '#ff66ff', '#00bfff'];
 
 window.addEventListener('load', function() {
     var treemapContainer = document.getElementById('treemap');
-    d3.csv("data.csv", function(rows) { // 臺北市就業服務處求職求才職缺資訊
+    d3.csv('data.csv', function(rows) { // 臺北市就業服務處求職求才職缺資訊
         var jobData = rows.map(function(row) { // process salary data
             var salaryText = row['待遇'].replace(/,/g, ''); // remove all commas
             const firstDigitRegexMatch = /[0-9]/.exec(salaryText);
