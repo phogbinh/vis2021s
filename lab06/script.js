@@ -1,4 +1,4 @@
-d3.csv('data.csv', function (rows) {
+d3.csv('data.csv', function(rows) {
     var languagesData = rows.map(function(row, rowIndex) {
         row['id'] = rowIndex; // add id
         return row; // update row
@@ -34,19 +34,19 @@ d3.csv('data.csv', function (rows) {
     ];
 
     // Transpose the data into layers
-    var dataset = d3.layout.stack()(['國文', '英文', '法文', '德文', '日文'].map(function (language) {
-        return languagesData.map(function (d) {
+    var dataset = d3.layout.stack()(['國文', '英文', '法文', '德文', '日文'].map(function(language) {
+        return languagesData.map(function(d) {
             return { x: d['id'], y: +d[language] };
         });
     }));
 
     // Set x, y and colors
     var x = d3.scale.ordinal()
-        .domain(dataset[0].map(function (d) { return d.x; }))
+        .domain(dataset[0].map(function(d) { return d.x; }))
         .rangeRoundBands([10, width - 10], 0.02);
 
     var y = d3.scale.linear()
-        .domain([0, d3.max(dataset, function (d) { return d3.max(d, function (d) { return d.y0 + d.y; }); })])
+        .domain([0, d3.max(dataset, function(d) { return d3.max(d, function(d) { return d.y0 + d.y; }); })])
         .range([height, 0]);
 
     var colors = ['#173f5f', '#20639b', '#3caea3', '#f6d55c', '#ed553b'];
@@ -58,7 +58,7 @@ d3.csv('data.csv', function (rows) {
         .orient('left')
         .ticks(5)
         .tickSize(-width, 0, 0)
-        .tickFormat(function (d) { return d });
+        .tickFormat(function(d) { return d });
 
     var xAxis = d3.svg.axis()
         .scale(x)
@@ -79,19 +79,19 @@ d3.csv('data.csv', function (rows) {
         .data(dataset)
         .enter().append('g')
         .attr('class', 'cost')
-        .style('fill', function (d, i) { return colors[i]; });
+        .style('fill', function(d, i) { return colors[i]; });
 
     var rect = groups.selectAll('rect')
-        .data(function (d) { return d; })
+        .data(function(d) { return d; })
         .enter()
         .append('rect')
-        .attr('x', function (d) { return x(d.x); })
-        .attr('y', function (d) { return y(d.y0 + d.y); })
-        .attr('height', function (d) { return y(d.y0) - y(d.y0 + d.y); })
+        .attr('x', function(d) { return x(d.x); })
+        .attr('y', function(d) { return y(d.y0 + d.y); })
+        .attr('height', function(d) { return y(d.y0) - y(d.y0 + d.y); })
         .attr('width', x.rangeBand())
-        .on('mouseover', function () { tooltip.style('display', null); })
-        .on('mouseout', function () { tooltip.style('display', 'none'); })
-        .on('mousemove', function (d) {
+        .on('mouseover', function() { tooltip.style('display', null); })
+        .on('mouseout', function() { tooltip.style('display', 'none'); })
+        .on('mousemove', function(d) {
             var xPosition = d3.mouse(this)[0] - 15;
             var yPosition = d3.mouse(this)[1] - 25;
             tooltip.attr('transform', 'translate(' + xPosition + ',' + yPosition + ')');
@@ -104,26 +104,31 @@ d3.csv('data.csv', function (rows) {
         .data(colors)
         .enter().append('g')
         .attr('class', 'legend')
-        .attr('transform', function (d, i) { return 'translate(30,' + i * 19 + ')'; });
+        .attr('transform', function(d, i) { return 'translate(30,' + i * 19 + ')'; });
 
     legend.append('rect')
         .attr('x', width - 18)
         .attr('width', 18)
         .attr('height', 18)
-        .style('fill', function (d, i) { return colors.slice().reverse()[i]; });
+        .style('fill', function(d, i) { return colors.slice().reverse()[i]; });
 
     legend.append('text')
         .attr('x', width + 5)
         .attr('y', 9)
         .attr('dy', '.35em')
         .style('text-anchor', 'start')
-        .text(function (d, i) {
+        .text(function(d, i) {
             switch (i) {
-                case 0: return '日文';
-                case 1: return '德文';
-                case 2: return '法文';
-                case 3: return '英文';
-                case 4: return '國文';
+                case 0:
+                    return '日文';
+                case 1:
+                    return '德文';
+                case 2:
+                    return '法文';
+                case 3:
+                    return '英文';
+                case 4:
+                    return '國文';
             }
         });
 
