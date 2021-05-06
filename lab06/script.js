@@ -1,3 +1,6 @@
+const WIDTH = 6000;
+const HEIGHT = 500;
+
 d3.csv('data.csv', function(rows) {
     var languagesData = rows.map(function(row, rowIndex) {
         row['id'] = rowIndex; // add id
@@ -7,8 +10,8 @@ d3.csv('data.csv', function(rows) {
 
     var margin = { top: 20, right: 160, bottom: 35, left: 30 };
 
-    var width = 6000 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+    var width = WIDTH - margin.left - margin.right,
+        height = HEIGHT - margin.top - margin.bottom;
 
     var svg = d3.select('body')
         .append('svg')
