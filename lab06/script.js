@@ -6,6 +6,8 @@ const MARGIN = {
     bottom: 35,
     left: 30
 };
+const BARS_TOTAL_WIDTH = WIDTH - MARGIN.left - MARGIN.right;
+const BARS_TOTAL_HEIGHT = HEIGHT - MARGIN.top - MARGIN.bottom;
 
 d3.csv('data.csv', function(rows) {
     var languagesData = rows.map(function(row, rowIndex) {
@@ -13,8 +15,7 @@ d3.csv('data.csv', function(rows) {
         return row; // update row
     });
     // Setup svg using Bostock's margin convention
-    var BARS_TOTAL_WIDTH = WIDTH - MARGIN.left - MARGIN.right,
-        BARS_TOTAL_HEIGHT = HEIGHT - MARGIN.top - MARGIN.bottom;
+
 
     var svg = d3.select('body')
         .append('svg')
