@@ -14,9 +14,8 @@ d3.csv('data.csv', function(rows) {
         row['id'] = rowIndex; // add id
         return row; // update row
     });
+
     // Setup svg using Bostock's margin convention
-
-
     var svg = d3.select('body')
         .append('svg')
         .attr('width', PLOT_WIDTH)
