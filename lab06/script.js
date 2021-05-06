@@ -13,8 +13,8 @@ d3.csv('data.csv', function(rows) {
         return row; // update row
     });
     // Setup svg using Bostock's margin convention
-    var width = WIDTH - MARGIN.left - MARGIN.right,
-        height = HEIGHT - MARGIN.top - MARGIN.bottom;
+    var BARS_TOTAL_WIDTH = WIDTH - MARGIN.left - MARGIN.right,
+        BARS_TOTAL_HEIGHT = HEIGHT - MARGIN.top - MARGIN.bottom;
 
     var svg = d3.select('body')
         .append('svg')
@@ -33,11 +33,11 @@ d3.csv('data.csv', function(rows) {
     // Set x, y and colors
     var x = d3.scale.ordinal()
         .domain(dataset[0].map(function(d) { return d.x; }))
-        .rangeRoundBands([10, width - 10], 0.02);
+        .rangeRoundBands([10, BARS_TOTAL_WIDTH - 10], 0.02);
 
     var y = d3.scale.linear()
         .domain([0, d3.max(dataset, function(d) { return d3.max(d, function(d) { return d.y0 + d.y; }); })])
-        .range([height, 0]);
+        .range([BARS_TOTAL_HEIGHT, 0]);
 
     var colors = ['#173f5f', '#20639b', '#3caea3', '#f6d55c', '#ed553b'];
 
@@ -47,7 +47,7 @@ d3.csv('data.csv', function(rows) {
         .scale(y)
         .orient('left')
         .ticks(5)
-        .tickSize(-width, 0, 0)
+        .tickSize(-BARS_TOTAL_WIDTH, 0, 0)
         .tickFormat(function(d) { return d });
 
     var xAxis = d3.svg.axis()
@@ -60,7 +60,7 @@ d3.csv('data.csv', function(rows) {
 
     svg.append('g')
         .attr('class', 'x axis')
-        .attr('transform', 'translate(0,' + height + ')')
+        .attr('transform', 'translate(0,' + BARS_TOTAL_HEIGHT + ')')
         .call(xAxis);
 
 
@@ -97,13 +97,13 @@ d3.csv('data.csv', function(rows) {
         .attr('transform', function(d, i) { return 'translate(30,' + i * 19 + ')'; });
 
     legend.append('rect')
-        .attr('x', width - 18)
+        .attr('x', BARS_TOTAL_WIDTH - 18)
         .attr('width', 18)
         .attr('height', 18)
         .style('fill', function(d, i) { return colors.slice().reverse()[i]; });
 
     legend.append('text')
-        .attr('x', width + 5)
+        .attr('x', BARS_TOTAL_WIDTH + 5)
         .attr('y', 9)
         .attr('dy', '.35em')
         .style('text-anchor', 'start')
