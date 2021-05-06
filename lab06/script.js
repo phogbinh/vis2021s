@@ -1,13 +1,13 @@
-const WIDTH = 6000;
-const HEIGHT = 500;
+const PLOT_WIDTH = 6000;
+const PLOT_HEIGHT = 500;
 const MARGIN = {
     top: 20,
     right: 160,
     bottom: 35,
     left: 30
 };
-const BARS_TOTAL_WIDTH = WIDTH - MARGIN.left - MARGIN.right;
-const BARS_TOTAL_HEIGHT = HEIGHT - MARGIN.top - MARGIN.bottom;
+const BARS_TOTAL_WIDTH = PLOT_WIDTH - MARGIN.left - MARGIN.right;
+const BARS_TOTAL_HEIGHT = PLOT_HEIGHT - MARGIN.top - MARGIN.bottom;
 
 d3.csv('data.csv', function(rows) {
     var languagesData = rows.map(function(row, rowIndex) {
@@ -19,8 +19,8 @@ d3.csv('data.csv', function(rows) {
 
     var svg = d3.select('body')
         .append('svg')
-        .attr('width', WIDTH)
-        .attr('height', HEIGHT)
+        .attr('width', PLOT_WIDTH)
+        .attr('height', PLOT_HEIGHT)
         .append('g')
         .attr('transform', 'translate(' + MARGIN.left + ',' + MARGIN.top + ')');
 
