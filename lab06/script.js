@@ -1,5 +1,11 @@
 const WIDTH = 6000;
 const HEIGHT = 500;
+const MARGIN = {
+    top: 20,
+    right: 160,
+    bottom: 35,
+    left: 30
+};
 
 d3.csv('data.csv', function(rows) {
     var languagesData = rows.map(function(row, rowIndex) {
@@ -7,18 +13,15 @@ d3.csv('data.csv', function(rows) {
         return row; // update row
     });
     // Setup svg using Bostock's margin convention
-
-    var margin = { top: 20, right: 160, bottom: 35, left: 30 };
-
-    var width = WIDTH - margin.left - margin.right,
-        height = HEIGHT - margin.top - margin.bottom;
+    var width = WIDTH - MARGIN.left - MARGIN.right,
+        height = HEIGHT - MARGIN.top - MARGIN.bottom;
 
     var svg = d3.select('body')
         .append('svg')
         .attr('width', WIDTH)
         .attr('height', HEIGHT)
         .append('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+        .attr('transform', 'translate(' + MARGIN.left + ',' + MARGIN.top + ')');
 
     // Transpose the data into layers
     var dataset = d3.layout.stack()(['國文', '英文', '法文', '德文', '日文'].map(function(language) {
