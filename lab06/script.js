@@ -101,7 +101,7 @@ d3.csv('data.csv', function(rows) {
             return y(d.y0 + d.y);
         })
         .attr('rx', function(d) {
-            return d['attributeOne'] === '1' ? '0' : '6';
+            return d['attributeOne'] === '1' ? '6' : '0';
         })
         .attr('height', function(d) {
             return y(d.y0) - y(d.y0 + d.y);
@@ -125,6 +125,11 @@ d3.csv('data.csv', function(rows) {
 
 
     // Draw legend
+    colors.unshift('#9932CC');
+    colors.unshift('#9932CC');
+    colors.unshift('rgb(153, 50, 204, 0.5)');
+    colors.unshift('#9932CC');
+
     var legend = svg.selectAll('.legend')
         .data(colors)
         .enter().append('g')
@@ -135,6 +140,9 @@ d3.csv('data.csv', function(rows) {
 
     legend.append('rect')
         .attr('x', BARS_TOTAL_WIDTH - 18)
+        .attr('rx', function(d, i) {
+            return i === 5 ? '6' : '0';
+        })
         .attr('width', 18)
         .attr('height', 18)
         .style('fill', function(d, i) {
@@ -158,6 +166,14 @@ d3.csv('data.csv', function(rows) {
                     return '英文';
                 case 4:
                     return '國文';
+                case 5:
+                    return '屬性一：1';
+                case 6:
+                    return '屬性一：2';
+                case 7:
+                    return '屬性二：0';
+                case 8:
+                    return '屬性二：1';
             }
         });
 
