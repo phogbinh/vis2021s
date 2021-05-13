@@ -28,7 +28,9 @@ d3.csv('data.csv', function(rows) {
         return languagesData.map(function(d) {
             return {
                 x: d['id'],
-                y: +d[language]
+                y: +d[language],
+                attributeOne: d['屬性一'],
+                attributeTwo: d['屬性二']
             };
         });
     }));
@@ -110,7 +112,7 @@ d3.csv('data.csv', function(rows) {
             var xPosition = d3.mouse(this)[0] - 15;
             var yPosition = d3.mouse(this)[1] - 25;
             tooltip.attr('transform', 'translate(' + xPosition + ',' + yPosition + ')');
-            tooltip.select('text').text(d.y);
+            tooltip.select('text').text('值：' + d.y + ' | 屬性一：' + d['attributeOne'] + ' | 屬性二：' + d['attributeTwo']);
         });
 
 
@@ -158,15 +160,14 @@ d3.csv('data.csv', function(rows) {
         .style('display', 'none');
 
     tooltip.append('rect')
-        .attr('width', 30)
+        .attr('width', 200)
         .attr('height', 20)
         .attr('fill', 'white')
-        .style('opacity', 0.5);
+        .style('opacity', 0.6);
 
     tooltip.append('text')
         .attr('x', 15)
         .attr('dy', '1.2em')
-        .style('text-anchor', 'middle')
         .attr('font-size', '12px')
         .attr('font-weight', 'bold');
 });
