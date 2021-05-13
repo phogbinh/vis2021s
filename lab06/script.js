@@ -100,10 +100,16 @@ d3.csv('data.csv', function(rows) {
         .attr('y', function(d) {
             return y(d.y0 + d.y);
         })
+        .attr('rx', function(d) {
+            return d['attributeOne'] === '1' ? '0' : '6';
+        })
         .attr('height', function(d) {
             return y(d.y0) - y(d.y0 + d.y);
         })
         .attr('width', x.rangeBand())
+        .style('opacity', function(d) {
+            return d['attributeTwo'] === '0' ? '0.5' : '1';
+        })
         .on('mouseover', function() {
             tooltip.style('display', null);
         })
