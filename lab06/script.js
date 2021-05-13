@@ -1,4 +1,4 @@
-const PLOT_WIDTH = 6000;
+const PLOT_WIDTH = 5000;
 const PLOT_HEIGHT = 500;
 const MARGIN = {
     top: 20,
@@ -74,7 +74,9 @@ d3.csv('data.csv', function(rows) {
     svg.append('g')
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,' + BARS_TOTAL_HEIGHT + ')')
-        .call(xAxis);
+        .call(xAxis)
+        .selectAll('text')
+        .attr('transform', 'translate(-15, 5) rotate(-45)');
 
 
     // Create groups for each series, rects for each segment 
