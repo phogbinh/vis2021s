@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <title>D3 Page Template</title>
-    <script src="http://d3js.org/d3.v6.min.js" charset="utf-8"></script> <!-- v6.5.0 -->
+    <title>Lab</title>
+    <script src="https://d3js.org/d3.v6.min.js" charset="utf-8"></script> <!-- v6.5.0 -->
+    <script src='script.js'></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-    <script type="text/javascript">
-      // Your beautiful D3 code will go here
-    </script>
-  </body>
+    <h3>作業 Lab09 挑選一首流行歌，電影主題曲，使用 D3.js 資料綁定 str 字幕檔，製作 SVG text 字幕動畫 </h3>
+    <button onclick='play()'>Play</button>
+    <ul>
+        <li><a href="https://people.cs.nctu.edu.tw/~hhshih/">「施賀翔」</a></li>
+        <li><a href="https://en.savefrom.net/20/">savefrom.net</a></li>
+        <li><a href="https://savesubs.com/zh">savesubs</a></li>
+        <li><a href="https://www.youtube.com/watch?v=-tKVN2mAKRI">DAOKO × 米津玄師 『打上花火』 打ち上げ花火、下から見るか？横から見るか？</a></li>
+        <li><a href="https://www.openshot.org/zh-hant/download/">OpenShot 影片編輯器</a></li>
+    </ul>
+    <div id='placeholder'>
+        <video id='video' width='1280' height='720' preload='auto'>
+            <source src='./video.mp4' type='video/mp4'>
+        </video>
+    </div>
+</body>
+
 </html>
-  
