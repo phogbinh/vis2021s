@@ -1,26 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&display=swap');
-
 body {
     background-color: rgba(255, 255, 0, 0.1);
     font-family: 'Noto Serif JP', serif;
-    font-size: 12pt;
-    border: solid 1px black;
-    width: 90%;
-    margin: 5px auto;
-    padding: 10px;
 }
 
-a {
-    color:#f30;
-    text-decoration: none; 
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='%23ff3300' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E") repeat-x 0 100%; 
-    background-size:20px auto; 
-    animation: waveMove 1s infinite linear;
-}
-
-@keyframes waveMove {
-    from { background-position:0 100%; }
-    to { background-position:20px 100%; }
+svg {
+    border: 1px solid gray;
 }
 
 #placeholder {
@@ -28,7 +13,22 @@ a {
 }
 
 #video {
+    width: 1280px;
+    height: 720px;
+    display: none;
     position: absolute;
     top: 0;
     z-index: -1;
+}
+
+#play:hover {
+    box-shadow: 0px 0px 5px 5px rgba(255, 128, 128, 0.5);
+}
+
+#play text:hover {
+    fill: red;
+}
+
+#subtitle:hover {
+    box-shadow: 0px 0px 5px 5px rgba(128, 255, 128, 0.5);
 }
