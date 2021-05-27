@@ -15,7 +15,6 @@ d3.text('chinese.srt').then(function(data) {
     var key;
     var begin;
     var end;
-    var duration;
     var subtitle = '';
     d3.select('body')
         .data(parsedCSV)
