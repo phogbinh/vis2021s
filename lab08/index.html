@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
+<html lang='zh-Hant-TW'>
 
 <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <title>Lab 8</title>
     <link rel='stylesheet' type='text/css' href='style.css'>
-    <script src="http://d3js.org/d3.v6.min.js" charset="utf-8"></script>
-    <!-- v6.5.0 -->
+    <link rel='stylesheet/less' type='text/css' href='style.less' />
+    <script src="//cdn.jsdelivr.net/npm/less@3.13"></script>
+    <script src='http://d3js.org/d3.v6.min.js' charset='utf-8'></script>
+    <script src='script.js'></script>
 </head>
 
 <body>
@@ -16,23 +18,21 @@
     <div>
         限定使用 D3.js，參考以下影片。
         <ul>
-            <li><a href="https://bl.ocks.org/basilesimon/f164aec5758d16d51d248e41af5428e4">Animate path in D3</a></li>
-            <li><a href="https://codepen.io/MyXoToD/post/howto-self-drawing-svg-animation">"Self-Drawing" SVG</a></li>
-            <li><a href="https://stackoverflow.com/questions/15275362/how-to-transition-a-path-in-d3-js">How to transition a path in d3.js</a></li>
-            <li><a href="https://css-tricks.com/svg-line-animation-works/">How SVG Line Animation Works</a></li>
-            <li><a href="http://blog.roachking.net/blog/2014/10/31/osolve-team-drawing-animation/">使用 SVG 將圖片做成動畫</a></li>
-            <li><a href="https://www.hesyifei.com/">何一非</a></li>
+            <li><a href='https://bl.ocks.org/basilesimon/f164aec5758d16d51d248e41af5428e4'>Animate path in D3</a></li>
+            <li><a href='https://codepen.io/MyXoToD/post/howto-self-drawing-svg-animation'>'Self-Drawing' SVG</a></li>
+            <li><a href='https://stackoverflow.com/questions/15275362/how-to-transition-a-path-in-d3-js'>How to transition a path in d3.js</a></li>
+            <li><a href='https://css-tricks.com/svg-line-animation-works/'>How SVG Line Animation Works</a></li>
+            <li><a href='http://blog.roachking.net/blog/2014/10/31/osolve-team-drawing-animation/'>使用 SVG 將圖片做成動畫</a></li>
+            <li><a href='https://www.hesyifei.com/'>何一非</a></li>
         </ul>
     </div>
-    <div>
+    <div id='name'>
         展示區 (姓名)
         <hr>
-        <img width="256" src="./uni9673_FZSJSK--GBK1-0.svg">
-        <!-- 陳 -->
-        <img width="256" src="./uni98A8_FZSJSK--GBK1-0.svg">
-        <!-- 風 -->
-        <img width="256" src="./uni5E73_FZSJSK--GBK1-0.svg">
-        <!-- 平 -->
+        <div id='chen' class='name-character'></div>
+        <div id='feng' class='name-character'></div>
+        <div id='ping' class='name-character'></div>
     </div>
+</body>
 
 </html>

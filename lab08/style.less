@@ -1,0 +1,69 @@
+@animation-duration: 3s;
+@animation-timing-function: ease;
+
+.pen {
+    fill: none;
+    stroke: rgb(199, 182, 160);
+    stroke-width: 150;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dashoffset: 0;
+}
+
+.animation (@name, @duration, @ease) {
+	-webkit-animation: @name @duration @ease;
+	-moz-animation: @name @duration @ease;
+	-ms-animation: @name @duration @ease;
+	animation: @name @duration @ease;
+}
+
+.keyframes(@name, @rules) {
+	@-webkit-keyframes @name { @rules(); }
+	@-moz-keyframes @name { @rules(); }
+	@-ms-keyframes @name { @rules(); }
+	@-o-keyframes @name { @rules(); }
+	@keyframes @name { @rules(); }
+}
+
+.do-calligraphy-animation(@name, @strokeDasharray, @startPercentage, @endPercentage, @timingFunction: @animation-timing-function) {
+    .line-@{name} {
+        clip-path: url('#@{name}');
+        stroke-dasharray: @strokeDasharray;
+        .animation(~'draw-@{name}', @animation-duration, @timingFunction);
+    }
+	.keyframes(~'draw-@{name}', {
+		0%, @{startPercentage} {
+			stroke-dashoffset: @strokeDasharray;
+		}
+		@{endPercentage} {
+			stroke-dashoffset: 0;
+		}
+	});
+}
+
+.do-calligraphy-animation(chen-1, 1861, 0%, 10%);
+.do-calligraphy-animation(chen-2, 2030, 10%, 20%);
+.do-calligraphy-animation(chen-3, 1261, 20%, 30%);
+.do-calligraphy-animation(chen-4, 742, 30%, 40%);
+.do-calligraphy-animation(chen-5, 1650, 40%, 50%);
+.do-calligraphy-animation(chen-6, 970, 50%, 60%);
+.do-calligraphy-animation(chen-7, 1040, 60%, 70%);
+.do-calligraphy-animation(chen-8, 1930, 70%, 80%);
+.do-calligraphy-animation(chen-9, 1011, 80%, 90%);
+.do-calligraphy-animation(chen-10, 960, 90%, 100%);
+
+.do-calligraphy-animation(feng-1, 1860, 0%, 11%);
+.do-calligraphy-animation(feng-2, 3360, 11%, 22%);
+.do-calligraphy-animation(feng-3, 970, 22%, 33%);
+.do-calligraphy-animation(feng-4, 570, 33%, 44%);
+.do-calligraphy-animation(feng-5, 1240, 44%, 55%);
+.do-calligraphy-animation(feng-6, 850, 55%, 66%);
+.do-calligraphy-animation(feng-7, 1280, 66%, 77%);
+.do-calligraphy-animation(feng-8, 1140, 77%, 88%);
+.do-calligraphy-animation(feng-9, 510, 88%, 100%);
+
+.do-calligraphy-animation(ping-1, 1720, 0%, 20%);
+.do-calligraphy-animation(ping-2, 640, 20%, 40%);
+.do-calligraphy-animation(ping-3, 680, 40%, 60%);
+.do-calligraphy-animation(ping-4, 1920, 60%, 80%);
+.do-calligraphy-animation(ping-5, 1850, 80%, 100%);
