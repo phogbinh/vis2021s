@@ -1,0 +1,33 @@
+html,
+body {
+    height: 200%;
+}
+
+#training-section,
+#testing-section {
+    height: 100%;
+    overflow: hidden;
+}
+
+#train-vs-test {
+    height: 100%;
+    position: fixed;
+    max-width: 100%;
+}
+
+.padding {
+    height: 100%;
+}
+
+#right {
+    width: 60%;
+    height: 100%;
+    position: relative;
+    float: right;
+}
+
+#left {
+    width: 40%;
+    height: 100%;
+    float: left;
+}
