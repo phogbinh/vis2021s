@@ -3,7 +3,7 @@ html,
 body {
     height: 200%;
     background-color: #282828;
-    color: white;
+    color: #cacaca;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -12,10 +12,14 @@ text {
 }
 
 a:link {
-    color: white;
+    color: #cacaca;
 }
 
 a:visited {
+    color: #cacaca;
+}
+
+a:hover {
     color: white;
 }
 
