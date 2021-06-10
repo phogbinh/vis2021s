@@ -5,10 +5,36 @@ body {
     background-color: #282828;
     color: #cacaca;
     font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+}
+
+h1,
+h2,
+h3 {
+    color: white;
 }
 
 text {
     fill: white;
+}
+
+h1 {
+    border-bottom: 0.15em solid white;
+    padding-bottom: 0.5em;
+    margin-bottom: -4em;
+}
+
+h2 {
+    margin-top: 6.5em;
+}
+
+h3 {
+    margin-top: 4.2em;
+}
+
+h4 {
+    margin-top: 1.5em;
+    margin-bottom: -0.6em;
 }
 
 a:link {
@@ -20,6 +46,11 @@ a:visited {
 }
 
 a:hover {
+    color: white;
+}
+
+.highlight {
+    font-weight: bold;
     color: white;
 }
 
@@ -44,6 +75,7 @@ h4 {
 #testing-section {
     height: 100%;
     overflow: hidden;
+    padding-left: 8.8em;
 }
 
 #train-vs-test {

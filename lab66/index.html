@@ -22,7 +22,7 @@
             <h2>資料來源</h2>
             我使用 Kaggle 上 <a href='https://www.kaggle.com/arashnic/hr-analytics-job-change-of-data-scientists'>HR Analytics: Job Change of Data Scientists</a> 的資料。
             <h2>資料處理</h2>
-            <p>我抓了資料下來先把有含空直資料的 rows 全部刪掉。</p>
+            <p>我先把有含空直資料的 rows 全部刪掉。</p>
             <p>然後我再清除以下欄位：</p>
             <ul id='deleted-columns'>
                 <li>enrollee_id</li>
@@ -64,24 +64,21 @@
             <h3>parsed_data.csv 說明</h3>
             <p>我從 original_data.csv 隨機抓出</p>
             <ul>
-                <li>325 <span class='job job-change-0'>無打算跳槽</span>的資料</li>
-                <li>325 <span class='job job-change-1'>有打算跳槽</span>的資料</li>
+                <li>325 個<span class='job job-change-0'>無打算跳槽</span>的資料</li>
+                <li>325 個<span class='job job-change-1'>有打算跳槽</span>的資料</li>
             </ul>
             <p>其中</p>
             <ul>
-                <li>訓練資料集比例為 70%</li>
+                <li>訓練資料集比例為 <span class='highlight'>70%</span></li>
                 <li>測試資料集比例為 30%</li>
             </ul>
         </div>
-
-        <hr>
-
         <div id='testing-section'>
             <h1>測試資料集的部分</h1>
             <h2>預測精準度</h2>
             <ul>
                 <li>訓練資料集為 100%</li>
-                <li>測試資料集為 70.4%</li>
+                <li>測試資料集為 <span class='highlight'>70.4%</span></li>
             </ul>
         </div>
     </div>
