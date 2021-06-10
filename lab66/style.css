@@ -1,6 +1,12 @@
 html,
 body {
     height: 200%;
+    background-color: #282828;
+    color: white;
+}
+
+text {
+    fill: white;
 }
 
 #training-section,
