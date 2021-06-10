@@ -11,6 +11,31 @@ text {
     fill: white;
 }
 
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+.job {
+    font-weight: bold;
+}
+
+.job-change-0 {
+    color: rgba(248, 210, 16);
+}
+
+.job-change-1 {
+    color: rgba(245, 23, 32);
+}
+
+#deleted-columns,
+h4 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 #training-section,
 #testing-section {
     height: 100%;
