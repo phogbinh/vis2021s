@@ -17,13 +17,12 @@
     <div id='left'>
         <div id='training-section'>
             <h1>訓練資料集的部分</h1>
-            <h2>題目</h2>
-            <p>以個人資料來預測員工有沒有打算跳槽。</p>
+            <h2>專題題目</h2>
+            <p>以個人資料來預測員工是否打算跳槽。</p>
             <h2>資料來源</h2>
-            我使用 Kaggle 上 <a href='https://www.kaggle.com/arashnic/hr-analytics-job-change-of-data-scientists'>HR Analytics: Job Change of Data Scientists</a> 的資料。
+            使用 Kaggle 上提供 <a href='https://www.kaggle.com/arashnic/hr-analytics-job-change-of-data-scientists'>HR Analytics: Job Change of Data Scientists</a> 的資料。
             <h2>資料處理</h2>
-            <p>我先把有含空直資料的 rows 全部刪掉。</p>
-            <p>然後我再清除以下欄位：</p>
+            <p>先移除所有含空直的資料，再捨去以下欄位：</p>
             <ul id='deleted-columns'>
                 <li>enrollee_id</li>
                 <li>city</li>
@@ -32,7 +31,7 @@
                 <li>company_size</li>
                 <li>company_type</li>
             </ul>
-            <h3>original_data.csv 重要欄位說明</h3>
+            <h3>original_data.csv 特殊欄位說明</h3>
             <h4>job_change_intention</h4>
             <ul>
                 <li>0 = <span class='job job-change-0'>無打算跳槽</span></li>
@@ -45,27 +44,27 @@
             </ul>
             <h4>experience</h4>
             <ul>
-                <li>0 = 持有不到 1 年工作經驗</li>
-                <li>21 = 持有超過 20 年工作經驗</li>
+                <li>0 = 工作經驗不到 1 年</li>
+                <li>21 = 工作經驗超過 20 年</li>
             </ul>
             <h4>education_level</h4>
             <ul>
                 <li>1 = 國小畢業</li>
-                <li>2 = 國中畢業（資料本來沒有）</li>
+                <li>2 = 國中畢業（Kaggle 本來資料沒有）</li>
                 <li>3 = 高中畢業</li>
-                <li>4 = 大學畢業（資料本來沒有）</li>
+                <li>4 = 大學畢業（Kaggle 本來資料沒有）</li>
                 <li>5 = 研究所/博士班畢業</li>
             </ul>
             <h4>last_new_job</h4>
             <ul>
-                <li>-1 = 之前沒有工作</li>
+                <li>-1 = 還沒轉職過</li>
                 <li>5 = 已轉職超過 4 年</li>
             </ul>
             <h3>parsed_data.csv 說明</h3>
-            <p>我從 original_data.csv 隨機抓出</p>
+            <p>從原本 <span class='highlight'>11,408</span> 筆資料 original_data.csv 隨機取</p>
             <ul>
-                <li>325 個<span class='job job-change-0'>無打算跳槽</span>的資料</li>
-                <li>325 個<span class='job job-change-1'>有打算跳槽</span>的資料</li>
+                <li>325 筆<span class='job job-change-0'>無打算跳槽</span>的資料</li>
+                <li>325 筆<span class='job job-change-1'>有打算跳槽</span>的資料</li>
             </ul>
             <p>其中</p>
             <ul>
@@ -75,11 +74,12 @@
         </div>
         <div id='testing-section'>
             <h1>測試資料集的部分</h1>
-            <h2>預測精準度</h2>
+            <h2>預測準確率</h2>
             <ul>
                 <li>訓練資料集為 100%</li>
                 <li>測試資料集為 <span class='highlight'>70.4%</span></li>
             </ul>
+            <p>另外如果使用原本的資料 original_data.csv 來訓練，模型也可以達到大約 <span class='highlight'>68.8%</span> 的準確率。</p>
         </div>
     </div>
 </body>
